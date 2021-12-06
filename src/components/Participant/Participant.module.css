@@ -1,0 +1,7 @@
+.participant{
+    padding: 1rem;
+    border: 1px solid grey;
+}
+.participantItem {
+    display: flex;
+}

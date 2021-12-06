@@ -1,23 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect } from "react";
+import "./App.css";
+import Participant from "./components/Participant/Participant";
+import { Participantgrid } from "./components/ParticipantGrid";
+import { Participantlist } from "./components/ParticipantList";
+import { useParticipants } from "./context/participantContext";
+import { participants } from "./Db/Database";
 
 function App() {
+  const { active, setActive } = useParticipants();
+
+  useEffect(() => {
+    const activeParticipants = participants.map(({ id, name }) => {
+      return {
+        id,
+        name,
+        muted: true,
+      };
+    });
+    setActive(activeParticipants);
+  }, [setActive]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Participantgrid />  
+      <Participantlist>
+        {participants.map(({ id, name }) => {
+          return <Participant id={id} name={name} key={id} />;
+        })}
+      </Participantlist>
     </div>
   );
 }

@@ -1,0 +1,15 @@
+.grid{
+    display: grid;
+    height: 600px;
+    width: 50%;
+    grid-template-columns: repeat(3,1fr);
+    border: 2px solid black;
+    padding: 2rem;
+    gap: 10px;
+}
+.itemGrid {
+    border: 1px solid black;
+    display: flex;
+    width: 100px;
+
+}
